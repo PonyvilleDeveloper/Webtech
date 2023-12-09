@@ -1,0 +1,17 @@
+[
+    {
+        "Name": "Hello",
+        "Url": "hello",
+        "Method": "GET"
+    },
+    {
+        "Name": "TechInfo",
+        "Url": "tech",
+        "Method": "GET"
+    },
+    {
+        "Name": "Page",
+        "Url": "\\w+",
+        "Method": "GET"
+    }
+]
