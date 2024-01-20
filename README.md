@@ -5,7 +5,7 @@
 using Webtech;
 
 namespace Foo {
-    class Program { //Базовый класс программы
+    class Program {
         public static void Main() {
             var api = new REST_API($"{ApiImpl.WorkDir}apiconfig.json", typeof(ApiImpl));
             Server? backend = new(api);
