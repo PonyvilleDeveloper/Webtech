@@ -17,3 +17,32 @@ namespace Foo {
     }
 }
 ```
+## API config json example
+```JSON
+[
+    {
+        "Name": "Resource",
+        "Url": "resources/\\w+/\\w+\\.\\w+",
+        "AuthRequired": false,
+        "Method": "GET"
+    },
+    {
+        "Name": "TechInfo",
+        "Url": "tech",
+        "AuthRequired": true,
+        "Method": "GET"
+    },
+    {
+        "Name": "Page",
+        "Url": "\\w+",
+        "AuthRequired": false,
+        "Method": "GET"
+    },
+    {
+        "Name": "Auth",
+        "Url": "auth",
+        "AuthRequired": false,
+        "Method": "POST"
+    }
+]
+```
