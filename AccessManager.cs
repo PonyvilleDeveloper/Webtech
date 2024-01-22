@@ -24,13 +24,14 @@ namespace Webtech {
             var t_s = !TokenStorage.Find(t => t.Value == ac_token.Value)?.Expired;
             return t_c && t_s == true;
         }
-        public Cookie Authorize(string user_id) {
+        public Cookie Authorize(HttpListenerResponse res) {
             Cookie ac_token = new() {
                     Name = "ac_token",
                     Value = ToBase64String(BitConverter.GetBytes(rand.NextInt64())),
-                    Comment = ToBase64String(Encoding.UTF8.GetBytes(user_id)),
                     Expires = DateTime.Now.AddHours(1)
                 };
+                TokenStorage.Add(ac_token);
+                res.AddHeader("Authorization", ac_token.Value);
             return ac_token;
         }
         public AccessManager(int clean_period) {
