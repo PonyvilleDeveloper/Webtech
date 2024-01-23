@@ -25,7 +25,7 @@ namespace Foo {
     class Program {
         public static void Main() {
             var api = new REST_API($"{ApiImpl.WorkDir}apiconfig.json", typeof(ApiImpl));
-            Server? backend = new(api, new IPEndPoint(neew IPAdress(new byte[] {127, 0, 0, 1}), 8080));
+            Server? backend = new(api, new IPEndPoint(new IPAdress(new byte[] {127, 0, 0, 1}), 8080));
             backend.Work = true;
 
             ApiImpl.logger.Info("MAIN", "Server started...");
