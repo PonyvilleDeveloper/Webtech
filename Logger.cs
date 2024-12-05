@@ -1,6 +1,3 @@
-using System;
-using System.Threading.Tasks;
-using System.Linq;
 using static System.Console;
 using static System.IO.File;
 
