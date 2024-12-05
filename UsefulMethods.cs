@@ -2,6 +2,7 @@ using System.Net;
 using System.Text;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using static System.Web.HttpUtility;
 
 namespace Webtech;
@@ -63,19 +64,21 @@ public static class UsefulMethods {
         };
     }
     public static Dictionary<string, string> ParseForm(this HttpListenerRequest req) {
-        var result = new Dictionary<string, string>();
         string[] form;
         using(var reader = new StreamReader(req.InputStream, req.ContentEncoding))
             form = reader.ReadToEnd().Split('&');
-        foreach(var kv in form)
-            result.Add(UrlDecode(kv.Split('=')[0]), UrlDecode(kv.Split('=')[1]));
-        return result;
+
+        return new(
+            from fe in form
+            select new KeyValuePair<string, string>(
+                UrlDecode(fe.Split('=')[0]), UrlDecode(fe.Split('=')[1])
+            )
+        );
     }
-    public static Dictionary<string, string> ParseQuery(this HttpListenerRequest req) {
-        var result = new Dictionary<string, string>();
-		result.AddRange(
-			
-		);
-		return result;
-    }
+    public static Dictionary<string, string> ParseQuery(this HttpListenerRequest req) => new(
+        from qe in req.Url!.Query.Split('&')
+        select new KeyValuePair<string, string>(
+            UrlDecode(qe.Split('=')[0]), UrlDecode(qe.Split('=')[1])
+        )
+    );
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Webtech;
 public class Server {
-    HttpListener HTTP;
-    REST_API API;
-    Thread Listening;
+    readonly HttpListener HTTP;
+    readonly REST_API API;
+    readonly Thread Listening;
     bool doWork;
     async void Listen() {
         while(this.doWork) {
@@ -19,9 +19,7 @@ public class Server {
         }
     }
     public bool Work {
-        get {
-            return doWork;
-        }
+        get => doWork;
         set {
             doWork = value;
             if(value) {
