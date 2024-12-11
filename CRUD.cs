@@ -13,4 +13,6 @@ internal struct CRUD {                                                          
     public bool AuthRequired { get; set; }                                      //Флаг, отмечающий необходимость аутентифицированности пользователя для выполнения этого метода
     [JsonIgnore]                                                                //След. поле не записывается в json
     public Action act;                                                          //Ссылка на функцию, реализующую метод
+    [JsonIgnore]
+    public object role_attr;                                                    //Сохранение атрибута для использования ролей
 }

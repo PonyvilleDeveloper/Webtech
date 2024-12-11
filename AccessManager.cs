@@ -19,11 +19,10 @@ public class AccessManager {
     public bool Authenticate(HttpListenerRequest info) {
         var ac_token = info.Cookies["ac_token"];
         var auth_header = info.Headers["Authorization"]?.Split()[1];
-        if(ac_token == null || auth_header == null)
-            return false;
-        var t_c = ac_token.Value == auth_header;
-        var t_s = !TokenStorage.Find(t => t.Value == ac_token.Value)?.Expired ?? false;
-        return t_c && t_s;
+        var res = ac_token == null || auth_header == null;
+        res &= ac_token?.Value == auth_header;
+        res &= !TokenStorage.Find(t => t.Value == ac_token?.Value)?.Expired ?? false;
+        return res;
     }
     public Cookie Authorize(HttpListenerResponse res) {
         Cookie ac_token = new() {
